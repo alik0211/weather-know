@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "weather-know",
+  "alias": ["weather-know.now.sh"],
   "builds": [
     {
       "src": "package.json",
