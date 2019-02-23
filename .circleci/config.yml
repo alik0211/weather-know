@@ -60,8 +60,8 @@ jobs:
       - run:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-                now --token $ZEIT_TOKEN
-                now --token $ZEIT_TOKEN alias
+              now --token $ZEIT_TOKEN ./build
+              now --token $ZEIT_TOKEN alias
             fi
 
 workflows:
