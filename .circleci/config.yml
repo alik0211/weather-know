@@ -63,8 +63,7 @@ jobs:
               now --token $ZEIT_TOKEN --local-config ../.now/now.master.json ./build
               now --token $ZEIT_TOKEN --local-config ./.now/now.master.json alias
             elif ! [ -z ${CI_PULL_REQUEST+x} ]; then
-              sudo chmod +x ./.now/now.pull.sh
-              sudo ./.now/now.pull.sh
+              ./.now/now.pull.sh
               now --token $ZEIT_TOKEN --local-config ../.now/now.pull.json ./build
               now --token $ZEIT_TOKEN --local-config ./.now/now.pull.json alias
             fi
