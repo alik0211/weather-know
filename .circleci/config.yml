@@ -59,8 +59,14 @@ jobs:
       - run: sudo yarn global add now
       - run:
           command: |
-            now --token $ZEIT_TOKEN --local-config ../now.json ./build
-            now --token $ZEIT_TOKEN alias
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              now --token $ZEIT_TOKEN --local-config ../.now/now.master.json ./build
+              now --token $ZEIT_TOKEN --local-config ./.now/now.master.json alias
+            elif [ -z ${CI_PULL_REQUEST+x} ]; then
+              ./.now/now.pull.sh
+              now --token $ZEIT_TOKEN --local-config ../.now/now.feature.json ./build
+              now --token $ZEIT_TOKEN --local-config ./.now/now.feature.json alias
+            fi
 
 workflows:
   version: 2
@@ -76,6 +82,3 @@ workflows:
       - deploy:
           requires:
             - build
-          filters:
-            branches:
-              only: master
