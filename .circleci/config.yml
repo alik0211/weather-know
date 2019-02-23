@@ -48,6 +48,21 @@ jobs:
           paths:
             - build
 
+  deploy:
+    docker:
+      - image: circleci/node:10
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run: yarn global add now
+      - run: |
+        if [ "${CIRCLE_BRANCH}" == "master" ]; then
+          now --token $ZEIT_TOKEN
+          now --token $ZEIT_TOKEN alias
+        fi
+
 workflows:
   version: 2
   unscheduled:
@@ -59,3 +74,6 @@ workflows:
       - build:
           requires:
             - test
+      - deploy:
+          requires:
+            - build

@@ -4,9 +4,8 @@
   "alias": ["weather-know.now.sh"],
   "builds": [
     {
-      "src": "package.json",
-      "use": "@now/static-build",
-      "config": { "distDir": "build" }
+      "src": "build",
+      "use": "@now/static"
     }
   ],
   "routes": [
