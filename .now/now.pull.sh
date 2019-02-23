@@ -1,13 +1,13 @@
 #!/bin/bash
 set -e
 
-PULL_NUM=${CI_PULL_REQUEST#"https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/pull/"}
+PULL_NUM=${CI_PULL_REQUEST#"https://github.com/alik0211/weather-know/pull/"}
 
 JSON=$(cat <<-EOF
 {
   "version": 2,
-  "name": "$CIRCLE_PROJECT_REPONAME-pull-$PULL_NUM",
-  "alias": ["$CIRCLE_PROJECT_REPONAME-pull-$PULL_NUM.now.sh"],
+  "name": "weather-know-pull-$PULL_NUM",
+  "alias": ["weather-know-pull-$PULL_NUM.now.sh"],
   "routes": [
     {
       "src": "^/static/(.*)",
