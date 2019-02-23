@@ -57,11 +57,12 @@ jobs:
       - attach_workspace:
           at: .
       - run: yarn global add now
-      - run: |
-        if [ "${CIRCLE_BRANCH}" == "master" ]; then
-          now --token $ZEIT_TOKEN
-          now --token $ZEIT_TOKEN alias
-        fi
+      - run:
+        command: |
+          if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            now --token $ZEIT_TOKEN
+            now --token $ZEIT_TOKEN alias
+          fi
 
 workflows:
   version: 2
