@@ -64,8 +64,8 @@ jobs:
               now --token $ZEIT_TOKEN --local-config ./.now/now.master.json alias
             elif [ -z ${CI_PULL_REQUEST+x} ]; then
               ./.now/now.pull.sh
-              now --token $ZEIT_TOKEN --local-config ../.now/now.feature.json ./build
-              now --token $ZEIT_TOKEN --local-config ./.now/now.feature.json alias
+              now --token $ZEIT_TOKEN --local-config ../.now/now.pull.json ./build
+              now --token $ZEIT_TOKEN --local-config ./.now/now.pull.json alias
             fi
 
 workflows:
