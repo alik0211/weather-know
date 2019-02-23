@@ -60,7 +60,7 @@ jobs:
       - run:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              now --token $ZEIT_TOKEN ./build
+              now --token $ZEIT_TOKEN --local-config ../now.json ./build
               now --token $ZEIT_TOKEN alias
             fi
 
