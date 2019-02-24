@@ -6,7 +6,7 @@ class App extends Component {
 
     getForecastByCoord({
       lat: 35,
-      lon: 139
+      lon: 139,
     });
   }
   render() {

@@ -17,8 +17,8 @@ export const getForecastByCoord = coord => {
       types: [
         GET_FORECAST_BY_COORD_REQUEST,
         GET_FORECAST_BY_COORD_SUCCESS,
-        GET_FORECAST_BY_COORD_FAILURE
-      ]
-    }
+        GET_FORECAST_BY_COORD_FAILURE,
+      ],
+    },
   };
 };

@@ -14,10 +14,10 @@ export default function(state = initialState, action) {
           ...list.reduce((accumulator, item) => {
             return {
               ...accumulator,
-              [item.dt]: item
+              [item.dt]: item,
             };
-          }, {})
-        }
+          }, {}),
+        },
       };
 
     default:
