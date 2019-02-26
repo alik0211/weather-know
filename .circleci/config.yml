@@ -32,35 +32,6 @@ jobs:
           at: .
       - run: yarn test
 
-  build:
-    docker:
-      - image: circleci/node:10
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run: yarn build
-      - store_artifacts:
-          path: build
-      - persist_to_workspace:
-          root: .
-          paths:
-            - build
-
-  deploy:
-    docker:
-      - image: circleci/node:10
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-      - run: sudo yarn global add now
-      - run:
-          command: |
-            now --token $ZEIT_TOKEN --local-config ../now.json ./build
-            now --token $ZEIT_TOKEN alias
 
 workflows:
   version: 2
@@ -70,12 +41,3 @@ workflows:
       - test:
           requires:
             - install
-      - build:
-          requires:
-            - test
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
