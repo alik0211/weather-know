@@ -1,6 +1,5 @@
 version: 2
 jobs:
-
   install:
     docker:
       - image: circleci/node:10
@@ -31,7 +30,6 @@ jobs:
       - attach_workspace:
           at: .
       - run: yarn test
-
 
 workflows:
   version: 2
