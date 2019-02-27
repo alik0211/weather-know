@@ -43,6 +43,10 @@ class App extends Component {
     }
     navigator.geolocation.getCurrentPosition(success, error, options);
   }
+  getCityByIP() {
+    const ip = null;
+    // http://api.ipstack.com/131.247.226.59?access_key=147565b64afea57103c789e3357966d4
+  }
 
   componentDidMount() {
     const { getForecastByCoord } = this.props;
