@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 
 class App extends Component {
   componentDidMount() {
-    const { getForecastByCoord } = this.props;
+    const { getUserLocation } = this.props;
 
-    getForecastByCoord({
-      lat: 35,
-      lon: 139,
-    });
+    getUserLocation();
   }
+
   render() {
     return <div className="app">App</div>;
   }

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getForecastByCoord } from '../../actions/forecast';
+import { getUserLocation } from '../../actions/user';
 
 import App from './cmp-app';
 
@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = {
-  getForecastByCoord,
+  getUserLocation,
 };
 
 export default connect(
