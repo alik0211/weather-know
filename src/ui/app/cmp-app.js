@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
 class App extends Component {
-  state = {
-    number: 1,
-  };
   getPositionByLonAndLat(getForecastByCoord) {
     const options = {
       enableHighAccuracy: true,
@@ -35,7 +32,7 @@ class App extends Component {
   }
 
   render() {
-    return <div className="app">App{this.state.number} </div>;
+    return <div className="app">App </div>;
   }
 }
 
