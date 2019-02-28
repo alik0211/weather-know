@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 class App extends Component {
+  state = {
+    number: 1,
+  };
   getPositionByLonAndLat(getForecastByCoord) {
     const options = {
       enableHighAccuracy: true,
@@ -17,16 +20,12 @@ class App extends Component {
         lat: latitude,
         lon: longitude,
       });
-
-      // console.log('Your current position is:');
-      // console.log(`More or less ${coordinates.accuracy} meters.`);
-      // console.log(`Latitude : ${latitude}`);
-      // console.log(`Longitude: ${longitude}`);
     }
 
     function error(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
     }
+
     navigator.geolocation.getCurrentPosition(success, error, options);
   }
 
@@ -34,8 +33,9 @@ class App extends Component {
     const { getForecastByCoord } = this.props;
     this.getPositionByLonAndLat(getForecastByCoord);
   }
+
   render() {
-    return <div className="app">App1</div>;
+    return <div className="app">App{this.state.number} </div>;
   }
 }
 
