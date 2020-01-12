@@ -1,5 +1,6 @@
 {
   "private": true,
+  "homepage" : "https://weather-know.netlify.com/",
   "dependencies": {
     "react": "16.12.0",
     "react-dom": "16.12.0",
