@@ -1,5 +1,7 @@
 # Weather Know
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4f49d5a0-1149-4d41-a7ce-7f6d7ede9453/deploy-status)](https://app.netlify.com/sites/weather-know/deploys)
+
 ## Available Scripts
 
 In the project directory, you can run:
