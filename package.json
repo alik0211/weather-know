@@ -1,10 +1,10 @@
 {
   "private": true,
-  "homepage" : "https://weather-know.netlify.com/",
+  "homepage": "https://weather-know.netlify.com/",
   "dependencies": {
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-redux": "6.0.1",
+    "react-redux": "7.1.3",
     "redux": "4.0.5",
     "redux-api-middleware": "3.1.0",
     "redux-thunk": "2.3.0"
