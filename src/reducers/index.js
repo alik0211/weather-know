@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
 import forecast from './forecast';
-import locationByIp from './locationByIp';
+import userLocation from './userLocation';
 
 export default combineReducers({
   forecast,
-  locationByIp,
+  userLocation,
 });

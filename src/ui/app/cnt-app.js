@@ -1,11 +1,13 @@
 import { connect } from 'react-redux';
-import { getUserLocation } from '../../actions/user';
+import { getUserLocation } from '../../actions/userLocation';
 
 import App from './cmp-app';
 
 const mapStateToProps = (state, ownProps) => {
+  const { coords, city } = state.userLocation;
   return {
-    sity: state.locationByIp.city,
+    coords,
+    city,
   };
 };
 

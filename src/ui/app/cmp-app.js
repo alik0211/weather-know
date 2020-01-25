@@ -7,8 +7,12 @@ class App extends Component {
   }
 
   render() {
-    const { sity } = this.props;
-    return <div className="app">{`${sity}`}</div>;
+    const { coords, city } = this.props;
+    if (city) {
+      return <div className="app">{city}</div>;
+    }
+
+    return <div className="app">{`${coords.lat} ${coords.lon}`}</div>;
   }
 }
 
