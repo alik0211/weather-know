@@ -1,0 +1,16 @@
+.search {
+  display: flex;
+  height: 2rem;
+}
+
+.search__input {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.search__button {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100px;
+  cursor: pointer;
+}

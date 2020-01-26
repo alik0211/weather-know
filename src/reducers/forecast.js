@@ -8,7 +8,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_FORECAST_SUCCESS:
-      const { city, list } = action.payload;
+      const { list } = action.payload;
 
       return {
         ...state,

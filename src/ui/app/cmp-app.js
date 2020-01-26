@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Search from './components/cnt-search';
 
 class App extends Component {
   componentDidMount() {
@@ -12,7 +13,11 @@ class App extends Component {
   render() {
     const { city } = this.props;
 
-    return <div className="app">{city}</div>;
+    return (
+      <div className="app">
+        <Search city={city} />
+      </div>
+    );
   }
 }
 

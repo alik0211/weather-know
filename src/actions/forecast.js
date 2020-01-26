@@ -14,7 +14,7 @@ export const getForecast = () => (dispatch, getState) => {
 
   return dispatch({
     [RSAA]: {
-      endpoint: `${WEATHER_ROOT_API}/forecast/daily?${searchString}`,
+      endpoint: `${WEATHER_ROOT_API}/forecast?${searchString}`,
       method: 'GET',
       types: [GET_FORECAST_REQUEST, GET_FORECAST_SUCCESS, GET_FORECAST_FAILURE],
     },
