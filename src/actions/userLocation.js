@@ -54,15 +54,28 @@ export const getLocationFromNavigatorFailure = isError => {
   };
 };
 
-export const getUserLocationFromIp = async () => {
+export const getUserLocationFromNavigator = async timeout => {
   const { coords } = await new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(resolve, reject, {});
+    navigator.geolocation.getCurrentPosition(resolve, reject, {
+      timeout: timeout,
+    });
   });
   return coords;
 };
 
 export const getUserLocation = () => dispatch => {
-  fetch(`${IPINFO_ROOT_API}?token=${IPINFO_API_KEY}`)
+  let timeout = 30;
+  const controller = new AbortController();
+  const { signal } = controller;
+  new Promise((resolv, reject) => {
+    const timer = setTimeout(() => {
+      reject(new Error('Timeout request ipinfo'));
+      controller.abort();
+    }, timeout);
+    fetch(`${IPINFO_ROOT_API}?token=${IPINFO_API_KEY}`, { signal })
+      .finally(() => clearTimeout(timer))
+      .then(resolv, reject);
+  })
     .then(response => {
       if (!response.ok) {
         dispatch(getLocationByIpFailure(false));
@@ -80,7 +93,7 @@ export const getUserLocation = () => dispatch => {
       dispatch(getLocationByIpFailure(true));
       dispatch(getLocationFromNavigatorRequest(true));
       dispatch(getLocationFromNavigatorFailure(false));
-      getUserLocationFromIp()
+      getUserLocationFromNavigator(timeout)
         .then(coords => {
           dispatch(getLocationFromNavigatorSuccess(coords));
           dispatch(getLocationFromNavigatorRequest(false));
