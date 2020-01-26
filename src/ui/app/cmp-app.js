@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 
 class App extends Component {
   componentDidMount() {
-    const { getUserLocation } = this.props;
+    const { getLocation, getForecast } = this.props;
 
-    getUserLocation();
+    getLocation().then(() => {
+      getForecast();
+    });
   }
 
   render() {
-    return <div className="app">App</div>;
+    const { city } = this.props;
+
+    return <div className="app">{city}</div>;
   }
 }
 
