@@ -1,18 +1,20 @@
 import { connect } from 'react-redux';
-import { getUserLocation } from '../../actions/userLocation';
+import { getLocation } from '../../actions/user';
+import { getForecast } from '../../actions/forecast';
 
 import App from './cmp-app';
 
 const mapStateToProps = (state, ownProps) => {
-  const { coords, city } = state.userLocation;
+  const { city } = state.user;
+
   return {
-    coords,
     city,
   };
 };
 
 const mapDispatchToProps = {
-  getUserLocation,
+  getLocation,
+  getForecast,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

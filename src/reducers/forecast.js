@@ -1,16 +1,18 @@
-import { GET_FORECAST_BY_COORD_SUCCESS } from '../actions/forecast';
+import { GET_FORECAST_SUCCESS } from '../actions/forecast';
 
-const initialState = {};
+const initialState = {
+  byTimestamp: {},
+  allTimestamp: [],
+};
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_FORECAST_BY_COORD_SUCCESS:
+    case GET_FORECAST_SUCCESS:
       const { city, list } = action.payload;
 
       return {
         ...state,
-        [city.id]: {
-          ...state[city.id],
+        byTimestamp: {
           ...list.reduce((accumulator, item) => {
             return {
               ...accumulator,
@@ -18,6 +20,7 @@ export default function(state = initialState, action) {
             };
           }, {}),
         },
+        allTimestamp: list.map(item => item.dt),
       };
 
     default:
