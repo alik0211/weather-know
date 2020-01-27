@@ -1,4 +1,5 @@
 import React from 'react';
+import { DADATA_API_KEY, DADATA_ROOT_API } from '../../../config';
 import './search.css';
 
 export default class Search extends React.Component {
@@ -29,7 +30,38 @@ export default class Search extends React.Component {
   };
 
   handleClickButton = () => {
+    const { searchString } = this.state;
+    let result = new Set();
+    var params = {
+      method: 'POST',
+      contentType: 'application/json',
+      headers: {
+        Authorization: 'Token ' + DADATA_API_KEY,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        query: searchString,
+        locations: [{ country: '*' }],
+      }),
+    };
+
     this.props.setLocation({ city: this.state.searchString });
+
+    fetch(`${DADATA_ROOT_API}`, params)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        return data.suggestions.filter(item => {
+          return item.data.city || item.data.settlement;
+        });
+      })
+      .then(data => {
+        data.map(item => result.add(item.data.city || item.data.settlement));
+        console.log(result);
+        return result;
+      });
   };
 
   componentDidUpdate() {
