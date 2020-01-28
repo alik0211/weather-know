@@ -14,3 +14,13 @@
   width: 100px;
   cursor: pointer;
 }
+
+.search__list {
+  border: 1px solid black;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.search__list:hover {
+  background-color: darkgrey;
+}
