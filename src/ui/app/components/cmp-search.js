@@ -1,4 +1,6 @@
 import React from 'react';
+import debounce from '../../../utils/debounce';
+
 import { DADATA_API_KEY, DADATA_ROOT_API } from '../../../config';
 import './search.css';
 
@@ -10,6 +12,8 @@ export default class Search extends React.Component {
       searchString: '',
       autoComplete: null,
     };
+
+    this.autoComplete = debounce(this.autoComplete.bind(this), 500);
   }
 
   handleChangeInput = event => {
@@ -30,11 +34,15 @@ export default class Search extends React.Component {
       this.setState({ searchString: city });
     }
   };
+
   handleClickButton = () => {
-    this.props.setLocation({ city: this.state.searchString });
+    const { searchString } = this.state;
+    this.props.setLocation({ city: searchString });
+    this.props.getForecast();
+    this.setState({ autoComplete: null });
   };
 
-  autoComplete = searchString => {
+  autoComplete(searchString) {
     var params = {
       method: 'POST',
       contentType: 'application/json',
@@ -74,7 +82,7 @@ export default class Search extends React.Component {
       .then(data => {
         this.setState({ autoComplete: data });
       });
-  };
+  }
 
   handleAutoComplete = searchString => {
     this.setState({
