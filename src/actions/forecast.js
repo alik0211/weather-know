@@ -10,7 +10,7 @@ export const getForecast = () => (dispatch, getState) => {
 
   const { city } = state.user;
 
-  const searchString = `appid=${WEATHER_API_KEY}&q=${city}`;
+  const searchString = `appid=${WEATHER_API_KEY}&q=${city}&units=metric`;
 
   return dispatch({
     [RSAA]: {

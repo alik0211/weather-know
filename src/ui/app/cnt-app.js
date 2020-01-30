@@ -6,9 +6,11 @@ import App from './cmp-app';
 
 const mapStateToProps = (state, ownProps) => {
   const { city } = state.user;
+  const { byTimestamp } = state.forecast;
 
   return {
     city,
+    byTimestamp,
   };
 };
 
