@@ -8,4 +8,8 @@ module.exports = {
   DADATA_API_KEY: process.env.REACT_APP_DADATA_API_KEY,
   DADATA_ROOT_API:
     'https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address',
+
+  HERE_API_KEY: process.env.REACT_APP_HERE_API_KEY,
+  HERE_ROOT_API:
+    'https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json',
 };

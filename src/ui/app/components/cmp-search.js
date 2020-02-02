@@ -1,7 +1,12 @@
 import React from 'react';
 import debounce from '../../../utils/debounce';
 
-import { DADATA_API_KEY, DADATA_ROOT_API } from '../../../config';
+import {
+  DADATA_API_KEY,
+  DADATA_ROOT_API,
+  HERE_API_KEY,
+  HERE_ROOT_API,
+} from '../../../config';
 import './search.css';
 
 export default class Search extends React.Component {
@@ -17,8 +22,11 @@ export default class Search extends React.Component {
   }
 
   handleChangeInput = event => {
-    this.autoComplete(event.target.value);
-    this.setState({ searchString: event.target.value });
+    const searchstring = event.target.value;
+    if (searchstring.length > 3) {
+      this.autoComplete(searchstring);
+    }
+    this.setState({ searchString: searchstring });
   };
 
   handleFocusInput = () => {
@@ -43,37 +51,24 @@ export default class Search extends React.Component {
   };
 
   autoComplete(searchString) {
-    var params = {
-      method: 'POST',
-      contentType: 'application/json',
-      headers: {
-        Authorization: 'Token ' + DADATA_API_KEY,
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        query: searchString,
-        locations: [{ country: '*' }],
-      }),
-    };
-    fetch(`${DADATA_ROOT_API}`, params)
+    fetch(`${HERE_ROOT_API}?apiKey=${HERE_API_KEY}&query=${searchString}`)
       .then(response => {
         return response.json();
       })
       .then(data => {
         return data.suggestions.filter(item => {
-          return item.data.city || item.data.settlement;
+          return item.address.city || item.address.district;
         });
       })
       .then(data => {
         return data.filter(item => {
           return (
-            (item.data.city &&
-              item.data.city
+            (item.address.city &&
+              item.address.city
                 .toLowerCase()
                 .includes(searchString.toLowerCase())) ||
-            (item.data.settlement &&
-              item.data.settlement
+            (item.address.district &&
+              item.address.district
                 .toLowerCase()
                 .includes(searchString.toLowerCase()))
           );
@@ -83,6 +78,48 @@ export default class Search extends React.Component {
         this.setState({ autoComplete: data });
       });
   }
+
+  // autoComplete(searchString) {// dadata
+  //   var params = {
+  //     method: 'POST',
+  //     contentType: 'application/json',
+  //     headers: {
+  //       Authorization: 'Token ' + DADATA_API_KEY,
+  //       'Content-Type': 'application/json',
+  //       Accept: 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       query: searchString,
+  //       locations: [{ country: '*' }],
+  //     }),
+  //   };
+  //   fetch(`${DADATA_ROOT_API}`, params)
+  //     .then(response => {
+  //       return response.json();
+  //     })
+  //     .then(data => {
+  //       return data.suggestions.filter(item => {
+  //         return item.data.city || item.data.settlement;
+  //       });
+  //     })
+  //     .then(data => {
+  //       return data.filter(item => {
+  //         return (
+  //           (item.data.city &&
+  //             item.data.city
+  //               .toLowerCase()
+  //               .includes(searchString.toLowerCase())) ||
+  //           (item.data.settlement &&
+  //             item.data.settlement
+  //               .toLowerCase()
+  //               .includes(searchString.toLowerCase()))
+  //         );
+  //       });
+  //     })
+  //     .then(data => {
+  //       this.setState({ autoComplete: data });
+  //     });
+  // }
 
   handleAutoComplete = searchString => {
     this.setState({
@@ -118,15 +155,15 @@ export default class Search extends React.Component {
           autoComplete.map(item => {
             return (
               <div
-                key={item.value}
+                key={item.label}
                 className="search__list"
                 onClick={() =>
                   this.handleAutoComplete(
-                    item.data.city || item.data.settlement
+                    item.address.city || item.address.district
                   )
                 }
               >
-                {item.value}
+                {item.label}
               </div>
             );
           })}
