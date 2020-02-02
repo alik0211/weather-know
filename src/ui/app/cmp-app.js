@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Search from './components/cnt-search';
+import Search from '../search/cnt-search';
 
 import './app.css';
 
@@ -14,10 +14,10 @@ class App extends Component {
 
   render() {
     const { city, byTimestamp } = this.props;
-    console.log(Object.entries(byTimestamp));
+
     return (
       <div className="app">
-        <Search city={city} />
+        <Search />
         {byTimestamp &&
           Object.entries(byTimestamp)
             .filter(item => item[1].dt_txt.includes('12:00'))

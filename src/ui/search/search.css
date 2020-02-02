@@ -1,0 +1,14 @@
+.search__control {
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.search__suggestions {
+  display: flex;
+  flex-direction: column;
+}
+
+.search__suggestion {
+  padding: 6px 0;
+}
