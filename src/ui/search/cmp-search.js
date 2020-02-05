@@ -54,7 +54,7 @@ class Search extends React.Component {
   getSuggestions = query => {
     getCities(query).then(cities => {
       this.setState({
-        displayedCities: cities.suggestions,
+        displayedCities: cities.suggestions || [],
       });
     });
   };
