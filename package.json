@@ -2,6 +2,8 @@
   "private": true,
   "homepage": "https://weather-know.netlify.com/",
   "dependencies": {
+    "lodash.debounce": "4.0.8",
+    "query-string": "6.10.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "react-redux": "7.1.3",

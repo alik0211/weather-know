@@ -10,11 +10,11 @@ export const getForecast = () => (dispatch, getState) => {
 
   const { city } = state.user;
 
-  const searchString = `appid=${WEATHER_API_KEY}&q=${city}`;
+  const searchString = `appid=${WEATHER_API_KEY}&q=${city}&units=metric`;
 
   return dispatch({
     [RSAA]: {
-      endpoint: `${WEATHER_ROOT_API}/forecast/daily?${searchString}`,
+      endpoint: `${WEATHER_ROOT_API}/forecast?${searchString}`,
       method: 'GET',
       types: [GET_FORECAST_REQUEST, GET_FORECAST_SUCCESS, GET_FORECAST_FAILURE],
     },

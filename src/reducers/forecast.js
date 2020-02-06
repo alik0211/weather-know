@@ -8,19 +8,19 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_FORECAST_SUCCESS:
-      const { city, list } = action.payload;
-
+      const { list } = action.payload;
+      const forecastByDay = list.filter(item => item.dt_txt.includes('12:00'));
       return {
         ...state,
         byTimestamp: {
-          ...list.reduce((accumulator, item) => {
+          ...forecastByDay.reduce((accumulator, item) => {
             return {
               ...accumulator,
               [item.dt]: item,
             };
           }, {}),
         },
-        allTimestamp: list.map(item => item.dt),
+        allTimestamp: forecastByDay.map(item => item.dt),
       };
 
     default:
