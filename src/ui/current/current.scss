@@ -1,0 +1,38 @@
+.fact {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0 auto; // need change
+  padding: 15px;
+  max-width: 400px;
+  height: 300px;
+  border-radius: 10px;
+  border: 1px solid green;
+
+  &__temp {
+    font-size: 96px;
+
+  }
+
+  &__condition {
+    text-align: center;
+  }
+
+  &__props {
+
+  }
+}
+
+.temp {
+  position: relative;
+  text-align: center;
+}
+
+.term {
+  &__label {
+    display: inline-block;
+  }
+
+  &__value {
+    display: inline-block;
+  }
+}
