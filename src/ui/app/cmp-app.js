@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Search from '../search/cnt-search';
 
 import Current from '../current/cmp-current';
-import './app.css';
+import './app.scss';
 
 class App extends Component {
   componentDidMount() {
@@ -18,6 +18,7 @@ class App extends Component {
 
     return (
       <div className="app">
+        <div className="">Balashov</div>
         <Current />
       </div>
     );
