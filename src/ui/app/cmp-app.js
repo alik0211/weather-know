@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Search from '../search/cnt-search';
 
 import Current from '../current/cmp-current';
+import ForecastDay from '../forcast-day/cmp-forecast-day';
+
 import './app.scss';
 
 class App extends Component {
@@ -20,6 +22,12 @@ class App extends Component {
       <div className="app">
         <div className="">Balashov</div>
         <Current />
+        <div className="forecast-container">
+          <ForecastDay />
+          <ForecastDay />
+          <ForecastDay />
+          <ForecastDay />
+        </div>
       </div>
     );
 
