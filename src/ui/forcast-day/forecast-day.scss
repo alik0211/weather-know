@@ -4,11 +4,11 @@
   box-sizing: border-box;
   display: inline-block;
   padding: 15px 5px;
-  width: 30%;
   text-align: center;
   color: white;
   background: $turquoise;
   border-radius: 20px;
+  cursor: pointer;
 
   &__name {
     font-size: 16px;
@@ -25,5 +25,60 @@
 
   &__icon {
     width: 80%;
+  }
+}
+
+.forecast-day-full {
+  box-sizing: border-box;
+  position: absolute;
+  max-width: 450px;
+  width: 100%;
+  top: 70px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  border-radius: 20px;
+  padding: 15px;
+  margin: auto;
+  cursor: pointer;
+
+  &__name {
+    font-size: 30px;
+  }
+
+  &__date {
+    display: block;
+    padding: 5px;
+  }
+
+  &__temp {
+    font-size: 96px;
+  }
+
+  &__icon {
+    display: block;
+    max-width: 150px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.forecast {
+  &-hours-container {
+    position: relative;
+    display: inline-block;
+    bottom: 0;
+    margin-top: 50px;
+    max-width: 100%;
+    //border: 1px solid green;
+  }
+
+  &-hour {
+    box-sizing: border-box;
+    height: 100px;
+    width: 50px;
   }
 }
