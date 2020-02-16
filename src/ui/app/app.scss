@@ -1,8 +1,24 @@
 .app {
+  position: relative;
+  box-sizing: border-box;
   padding: 10px;
+
+  &__fact {
+    margin: 0 auto;
+  }
 }
 
 .forecast-container {
-  overflow: visible;
+  display: block;
+  margin: 0 auto;
   height: 200px;
+
+  @media (min-width: 640px) {
+    width: 640px;
+  }
+}
+
+.div  {
+  width: 120px;
+  margin-right: 10px;
 }

@@ -4,7 +4,7 @@ import './current.scss';
 
 export default function Current(props) {
   return (
-    <div className="fact">
+    <div className="fact app__fact">
       <div className="fact__label">Current</div>
       <div className="temp fact__temp">
         <span className="temp__value">7</span>
