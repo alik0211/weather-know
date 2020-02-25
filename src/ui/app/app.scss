@@ -3,9 +3,16 @@
   box-sizing: border-box;
   padding: 10px;
 
+  &__search {
+    max-width: 450px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+  }
+
   &__fact {
     margin: 0 auto;
   }
+
 }
 
 .forecast-container {
@@ -22,3 +29,4 @@
   width: 120px;
   margin-right: 10px;
 }
+

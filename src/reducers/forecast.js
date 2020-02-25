@@ -48,7 +48,7 @@ export default function(state = initialState, action) {
             };
           }, {}),
         },
-        allDate: Array.from(dataSet).slice(0, 5),
+        allDate: Array.from(dataSet).slice(1, 5),
       };
 
     default:

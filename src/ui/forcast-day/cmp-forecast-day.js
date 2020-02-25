@@ -7,6 +7,9 @@ import ForecastHour from '../forecast-hour/foreact-hour';
 import './forecast-day.scss';
 
 export default class ForecastDay extends React.Component {
+  state = {
+    color: '',
+  };
   monthName = [
     'Jan',
     'Feb',
@@ -31,8 +34,13 @@ export default class ForecastDay extends React.Component {
     'Saturday',
   ];
 
+  componentDidMount() {
+    this.setState({ color: this.props.color });
+  }
+
   render() {
-    const { onClick, full = false, data, color } = this.props;
+    const { onClick, full = false, data } = this.props;
+    const { color } = this.state;
     const className = full ? 'forecast-day-full' : 'forecast-day';
     const time = data.allTime.includes('12:00:00')
       ? '12:00:00'
@@ -41,6 +49,10 @@ export default class ForecastDay extends React.Component {
     const month = this.monthName[d.getMonth()];
     const date = d.getDate() < 10 ? `0${d.getDate()}` : `${d.getDate()}`;
     const day = this.dayName[d.getDay()];
+    const temp =
+      Math.round(data[time].main.temp) > 0
+        ? `+${Math.round(data[time].main.temp)}`
+        : Math.round(data[time].main.temp);
 
     const params = {
       slidesPerView: 'auto',
@@ -52,14 +64,12 @@ export default class ForecastDay extends React.Component {
       <div
         className={className}
         style={{ background: color }}
-        onClick={onClick}
+        onClick={() => onClick(color)}
       >
         <div className={`${className}__name`}>{day}</div>
         <time className={`${className}__date`}>{`${date} ${month}`}</time>
         <div className={`temp ${className}__temp`}>
-          <span className="temp__value">
-            {Math.round(data[time].main.temp)}
-          </span>
+          <span className="temp__value">{temp}</span>
           <span className="temp__inut">&deg;</span>
         </div>
         <img
@@ -68,18 +78,21 @@ export default class ForecastDay extends React.Component {
           alt="cloud"
         />
         {full && (
-          <div className="forecast-hours-container">
-            {/* <Swiper {...params}>
+          <div
+            className="forecast-hours-container"
+            onClick={evt => {
+              evt.stopPropagation();
+            }}
+          >
+            <Swiper {...params}>
               {data.allTime.map(item => {
                 return (
                   <div className="forecast-hour" key={item}>
-                    <ForecastHour
-                      data={data[item]}
-                    />
+                    <ForecastHour data={data[item]} />
                   </div>
-                )
+                );
               })}
-            </Swiper> */}
+            </Swiper>
           </div>
         )}
       </div>

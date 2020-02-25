@@ -13,11 +13,12 @@ class App extends Component {
   state = {
     full: false,
     item: null,
-    colors: ['#000', '#00f', '#0f0', '#f00', '#fff'],
+    color: null,
+    colors: ['#0f0', '#00f', '#0f0', '#f00', '#f0f'],
   };
 
-  onClickForecastDay = item => {
-    this.setState({ full: !this.state.full, item: item });
+  onClickForecastDay = (item, color) => {
+    this.setState({ full: !this.state.full, item: item, color: color });
   };
 
   componentDidMount() {
@@ -29,7 +30,7 @@ class App extends Component {
   }
 
   render() {
-    const { full, item, colors } = this.state;
+    const { full, item, colors, color } = this.state;
     const { byTimestamp, byDate, allDate } = this.props;
 
     const params = {
@@ -39,12 +40,14 @@ class App extends Component {
 
     return (
       <div className="app">
-        <div className="">Balashov</div>
+        <Search className="app__search" />
         <Current />
+        <div>Next 5 Days/Hourly</div>
         {full && (
           <ForecastDay
             full={full}
             data={byDate[item]}
+            color={color}
             onClick={this.onClickForecastDay}
           />
         )}
@@ -56,7 +59,7 @@ class App extends Component {
                   <ForecastDay
                     data={byDate[item]}
                     color={colors.pop()}
-                    onClick={() => this.onClickForecastDay(item)}
+                    onClick={color => this.onClickForecastDay(item, color)}
                   />
                 </div>
               );

@@ -1,14 +1,18 @@
 @import '../../constans/colors.scss';
 
 .fact {
+  display: flex;
+  flex-direction: column;
   position: relative;
   box-sizing: border-box;
   padding: 15px;
   max-width: 450px;
   max-height: 400px;
+  height: calc(100vh / 2); //
   border-radius: 20px;
   background-color: $cornflower-blue;
   color: white;
+  font-size: 20px;
 
   &__label {
     text-align: center;
@@ -18,10 +22,14 @@
     font-family: sans-serif;
     font-size: 96px;
     font-weight: bold;
+
+    @media (max-width: 400px) {
+      font-size: 86px;
+    }
   }
 
   &__condition {
-    padding: 10px;
+    //padding: 10px;
     text-align: center;
     font-size: 20px;
   }
@@ -38,6 +46,45 @@
     width: 50%;
   }
 }
+// .fact {
+//   position: relative;
+//   box-sizing: border-box;
+//   padding: 15px;
+//   max-width: 450px;
+//   max-height: 400px;
+//   height: calc(100vh / 2); //
+//   border-radius: 20px;
+//   background-color: $cornflower-blue;
+//   color: white;
+
+//   &__label {
+//     text-align: center;
+//   }
+
+//   &__temp {
+//     font-family: sans-serif;
+//     font-size: 96px;
+//     font-weight: bold;
+//   }
+
+//   &__condition {
+//     padding: 10px;
+//     text-align: center;
+//     font-size: 20px;
+//   }
+
+//   &__props {
+//     display: flex;
+//     justify-content: space-between;
+//   }
+
+//   &__img {
+//     position: relative;
+//     margin-top: auto;
+//     margin-bottom: 0;
+//     width: 50%;
+//   }
+// }
 
 .temp {
   position: relative;
@@ -47,6 +94,10 @@
 .term {
   font-size: 20px;
   padding: 10px 0;
+
+  @media (max-width: 400px) {
+    padding: 5px 0;
+  }
 
   &__label {
     display: inline-block;
