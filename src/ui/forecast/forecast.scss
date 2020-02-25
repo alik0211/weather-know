@@ -1,0 +1,18 @@
+.forecast {
+  &__inner {
+    padding: 0 16px;
+  }
+}
+
+.forecast__items {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.forecast__item {
+  width: 128px;
+  margin-right: 16px;
+  background-color: #ccc;
+  flex: 0 0 auto;
+}

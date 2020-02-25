@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
-import Swiper from 'react-id-swiper';
 import 'swiper/swiper.scss';
 
+import Fact from '../fact/cmp-fact';
 import Search from '../search/cnt-search';
-import Current from '../current/cmp-current';
-import ForecastDay from '../forcast-day/cmp-forecast-day';
+import Forecast from '../forecast/cmp-forecast';
 
 import './app.scss';
 
@@ -40,18 +39,25 @@ class App extends Component {
 
     return (
       <div className="app">
-        <Search className="app__search" />
-        <Current />
-        <div>Next 5 Days/Hourly</div>
-        {full && (
-          <ForecastDay
-            full={full}
-            data={byDate[item]}
-            color={color}
-            onClick={this.onClickForecastDay}
-          />
-        )}
-        <div className="forecast-container">
+        <div className="app__search">
+          <Search />
+        </div>
+        <div className="app__fact">
+          <Fact />
+        </div>
+        <div className="app__forecast">
+          <Forecast />
+        </div>
+        {/* <div>Next 5 Days/Hourly</div>
+          {full && (
+            <ForecastDay
+              full={full}
+              data={byDate[item]}
+              color={color}
+              onClick={this.onClickForecastDay}
+            />
+          )} */}
+        {/* <div className="forecast-container">
           <Swiper {...params}>
             {allDate.map(item => {
               return (
@@ -65,7 +71,7 @@ class App extends Component {
               );
             })}
           </Swiper>
-        </div>
+        </div> */}
       </div>
     );
 

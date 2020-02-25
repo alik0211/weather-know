@@ -127,10 +127,9 @@ class Search extends React.Component {
 
   render() {
     const { searchString, displayedCities, showInput } = this.state;
-    const { className = '' } = this.props;
 
     return (
-      <div className={`${className} search`}>
+      <div className="search">
         {!showInput && (
           <div className="search__inner">
             <div className="search__value">{searchString}</div>

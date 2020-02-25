@@ -1,18 +1,19 @@
 .app {
   position: relative;
   box-sizing: border-box;
-  padding: 10px;
 
   &__search {
-    max-width: 450px;
+    max-width: 768px;
     margin: 0 auto;
-    margin-bottom: 10px;
+    padding: 16px 0;
   }
 
   &__fact {
+    max-width: 768px;
     margin: 0 auto;
+    margin-bottom: 24px;
+    padding: 0 16px;
   }
-
 }
 
 .forecast-container {
@@ -25,7 +26,7 @@
   }
 }
 
-.div  {
+.div {
   width: 120px;
   margin-right: 10px;
 }
