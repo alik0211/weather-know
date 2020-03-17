@@ -3,13 +3,14 @@ import debounce from 'lodash.debounce';
 import getCities from '../../utils/getCities';
 
 import './search.scss';
+import { getWeather } from '../../actions/forecast';
 
 class Search extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showInput: false,
+      // showInput: false,
       searchString: '',
       displayedCities: [],
     };
@@ -47,17 +48,16 @@ class Search extends React.Component {
   };
 
   search = city => {
-    const { setLocation, getForecast } = this.props;
+    const { setLocation, getForecast, getWeather } = this.props;
 
     this.setState({
-      showInput: false,
       displayedCities: [],
     });
 
     setLocation({
-      city: city,
+      city,
     });
-
+    getWeather();
     getForecast();
   };
 
@@ -86,7 +86,6 @@ class Search extends React.Component {
     const { city } = this.props;
 
     this.setState({
-      showInput: false,
       searchString: city,
       displayedCities: [],
     });
@@ -126,51 +125,28 @@ class Search extends React.Component {
   }
 
   render() {
-    const { searchString, displayedCities, showInput } = this.state;
+    const { searchString, displayedCities } = this.state;
 
     return (
       <div className="search">
-        {!showInput && (
-          <div className="search__inner">
-            <div className="search__value">{searchString}</div>
-            <button
-              className="search__button search__button-loupe"
-              onClick={this.handleLoupeClick}
-            />
-          </div>
-        )}
-        {showInput && (
-          <div className="search__inner">
-            <div className="search__container">
-              <button
-                className="search__button search__button-arrow"
-                onClick={this.handleArrowClick}
-              />
-              <input
-                ref={this.focusInput}
-                className="search__control"
-                value={searchString}
-                onChange={this.handleChange}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
-                onKeyDown={this.handleKeyDown}
-                placeholder="Enter city"
-              />
-              {searchString && (
-                <button
-                  className="search__button search__button-close"
-                  src={require('./icon-close.svg')}
-                  onClick={this.handleCloseClick}
-                />
-              )}
+        <div className="search__inner">
+          <input
+            className="search__control"
+            type="text"
+            ref={this.focusInput}
+            value={searchString}
+            onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
+            onKeyDown={this.handleKeyDown}
+            placeholder="Enter city"
+          />
+          {!!displayedCities.length ? (
+            <div className="search__suggestions">
+              {this.renderSuggestions()}
             </div>
-            {!!displayedCities.length ? (
-              <div className="search__suggestions">
-                {this.renderSuggestions()}
-              </div>
-            ) : null}
-          </div>
-        )}
+          ) : null}
+        </div>
       </div>
     );
   }

@@ -1,0 +1,34 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  font-family: Roboto, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  color: white;
+
+  &__weather {
+    font-size: 48px;
+    line-height: 56px;
+  }
+
+  &__temp {
+    font-weight: bold;
+  }
+
+  &__condition {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: bold;
+  }
+}
+
+.term {
+  font-size: 18px;
+  line-height: 21px;
+
+  &__label-m {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+  }
+}

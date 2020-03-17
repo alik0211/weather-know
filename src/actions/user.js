@@ -12,11 +12,12 @@ export const getLocation = () => dispatch => {
       return response.json();
     })
     .then(data => {
-      const { city } = data;
+      const { city, loc } = data;
 
       return dispatch(
         setLocation({
           city,
+          loc,
         })
       );
     })

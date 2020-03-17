@@ -1,33 +1,35 @@
 .app {
-  position: relative;
   box-sizing: border-box;
-
-  &__search {
-    max-width: 768px;
-    margin: 0 auto;
-    padding: 16px 0;
-  }
-
-  &__fact {
-    max-width: 768px;
-    margin: 0 auto;
-    margin-bottom: 24px;
-    padding: 0 16px;
-  }
-}
-
-.forecast-container {
-  display: block;
+  position: relative;
+  max-width: 600px;
   margin: 0 auto;
-  height: 200px;
+}
 
-  @media (min-width: 640px) {
-    width: 640px;
+.header {
+  box-sizing: border-box;
+  background-color: #FFBC53;
+
+  &__inner {
+    padding: 16px;
   }
 }
 
-.div {
-  width: 120px;
-  margin-right: 10px;
+.overcast-clouds {
+  background-color: #A8B8B8;
 }
 
+.broken-clouds {
+  background-color: #A8B8B8;
+}
+
+.scattered-clouds {
+  background-color: #BCCCCC;
+}
+
+.few-clouds {
+  background-color: #C9C9A3;
+}
+
+.clear {
+  background-color: #FFBC53;
+}
