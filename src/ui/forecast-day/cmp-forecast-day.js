@@ -49,7 +49,11 @@ export default class ForecastDay extends React.Component {
           </div>
           <div className="forecast-day__column">
             <div className="forecast-day__icon">
-              <img src="./weather-icon/icon.svg" />
+              <img
+                src={`./weather-icon/${item.weather[0].icon}.svg`}
+                width="91"
+                height="91"
+              />
             </div>
             <div className="forecast-day__max term">
               <div className="term__value">

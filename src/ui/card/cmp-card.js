@@ -4,6 +4,7 @@ import './card.scss';
 export default class Card extends React.Component {
   render() {
     const { className, data } = this.props;
+    console.log(data.weather[0].icon);
     return (
       <div className={`${className} card`}>
         <div className="card__weather">
@@ -25,7 +26,11 @@ export default class Card extends React.Component {
           </div>
         </div>
         <div className="card__img">
-          <img src="./weather-icon/icon.svg" />
+          <img
+            src={`./weather-icon/${data.weather[0].icon}.svg`}
+            width="91"
+            height="91"
+          />
         </div>
       </div>
     );
