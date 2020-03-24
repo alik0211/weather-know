@@ -1,25 +1,19 @@
 export default function getSkyClass(clouds) {
-  let className = '';
-  switch (true) {
-    case clouds < 20: {
-      className = 'clear';
-      break;
-    }
-    case clouds < 40: {
-      className = 'few-clouds';
-      break;
-    }
-    case clouds < 60: {
-      className = 'scattered-clouds';
-      break;
-    }
-    case clouds < 80: {
-      className = 'broken-clouds';
-      break;
-    }
-    default: {
-      className = 'overcast-clouds';
-    }
+  if (clouds < 20) {
+    return 'clear';
   }
-  return className;
+
+  if (clouds < 40) {
+    return 'few-clouds';
+  }
+
+  if (clouds < 60) {
+    return 'scattered-clouds';
+  }
+
+  if (clouds < 80) {
+    return 'broken-clouds';
+  }
+
+  return 'overcast-clouds';
 }
