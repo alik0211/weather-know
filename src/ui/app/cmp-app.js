@@ -1,37 +1,42 @@
 import React, { Component } from 'react';
-import Search from '../search/cnt-search';
 
-import './app.css';
+import 'swiper/swiper.scss';
+
+import Search from '../search/cnt-search';
+import ForecastDay from '../forecast-day/cmp-forecast-day';
+import Card from '../card/cmp-card';
+import getSkyClass from '../../utils/getSkyClass';
+
+import './app.scss';
 
 class App extends Component {
   componentDidMount() {
-    const { getLocation, getForecast } = this.props;
+    const { getLocation, getForecast, getWeather } = this.props;
 
     getLocation().then(() => {
+      getWeather();
       getForecast();
     });
   }
 
   render() {
-    const { byTimestamp } = this.props;
-
+    const { byDate, allDate, fact } = this.props;
+    console.log(fact);
+    const className = fact ? getSkyClass(fact.clouds.all) : '';
     return (
       <div className="app">
-        <Search />
-        {byTimestamp &&
-          Object.values(byTimestamp).map(item => {
-            return (
-              <div key={item.dt} className="forecast__day">
-                <div>
-                  data: {item.dt_txt.slice(0, item.dt_txt.indexOf(' '))}
-                </div>
-                <div>temp: {item.main.temp}</div>
-                <div>feels_like: {item.main.feels_like}</div>
-                <div>wind: {item.wind.speed}</div>
-                <div>weather: {item.weather.description}</div>
-              </div>
-            );
-          })}
+        <div className={`header ${className}`}>
+          <div className="header__inner">
+            <Search />
+            {fact && <Card className="header__card" data={fact} />}
+          </div>
+        </div>
+
+        <div className="forecast">
+          {allDate.map(item => (
+            <ForecastDay key={byDate[item].dt} item={byDate[item]} />
+          ))}
+        </div>
       </div>
     );
   }

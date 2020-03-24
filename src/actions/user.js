@@ -3,6 +3,18 @@ import { IPINFO_API_KEY, IPINFO_ROOT_API } from '../config';
 export const SET_LOCATION = 'SET_LOCATION';
 
 export const getLocation = () => dispatch => {
+  const city = localStorage.getItem('city');
+
+  if (city) {
+    dispatch(
+      setLocation({
+        city,
+      })
+    );
+
+    return Promise.resolve();
+  }
+
   return fetch(`${IPINFO_ROOT_API}?token=${IPINFO_API_KEY}`)
     .then(response => {
       if (!response.ok) {
@@ -12,11 +24,12 @@ export const getLocation = () => dispatch => {
       return response.json();
     })
     .then(data => {
-      const { city } = data;
+      const { city, loc } = data;
 
       return dispatch(
         setLocation({
           city,
+          loc,
         })
       );
     })
@@ -26,6 +39,8 @@ export const getLocation = () => dispatch => {
 };
 
 export const setLocation = location => {
+  localStorage.setItem('city', location.city);
+
   return {
     type: SET_LOCATION,
     payload: location,

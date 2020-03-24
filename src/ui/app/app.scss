@@ -1,0 +1,35 @@
+.app {
+  box-sizing: border-box;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.header {
+  box-sizing: border-box;
+  background-color: #FFBC53;
+
+  &__inner {
+    padding: 16px;
+  }
+}
+
+.overcast-clouds {
+  background-color: #A8B8B8;
+}
+
+.broken-clouds {
+  background-color: #A8B8B8;
+}
+
+.scattered-clouds {
+  background-color: #BCCCCC;
+}
+
+.few-clouds {
+  background-color: #C9C9A3;
+}
+
+.clear {
+  background-color: #FFBC53;
+}
